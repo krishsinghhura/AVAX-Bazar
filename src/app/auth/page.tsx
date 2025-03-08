@@ -3,12 +3,16 @@ import { useState } from "react";
 import { ethers } from "ethers";
 import ABI from "./ContractAbi.json";
 import Cookies from "js-cookie";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
   const [contract, setContract] = useState<ethers.Contract | null>(null);
+  const [userType, setUserType] = useState("lender");
   const ContractAddress = process.env.NEXT_PUBLIC_LOGIN_CONTRACT_ADDRESS ?? "";
   const ContractAbi = ABI.abi;
+  const Router = useRouter();
 
   const connectWallet = async () => {
     if (!window.ethereum) {
@@ -34,8 +38,12 @@ export default function AuthPage() {
       return;
     }
     try {
-      const tx = await auth.signup();
+      const tx = await auth.signup(userType);
       await tx.wait();
+      const newUser = await axios.post("/api/users", {
+        address: auth.address,
+        role: userType,
+      });
       Cookies.set("token", auth.toString());
     } catch (error: any) {
       console.error("Signup error:", error);
@@ -51,14 +59,23 @@ export default function AuthPage() {
     try {
       const check = await wallet.auth.login(wallet.address);
       if (check) {
+        const response = await axios.get(
+          `/api/users?address=${wallet.address}`
+        );
+        if (response.data.role === "LENDER") {
+          Router.push("/lender");
+        } else if (response.data.role === "BORROWER") {
+          Router.push("/borrower");
+        }
         Cookies.set("token", wallet.address);
       } else {
-        console.error("You dont have an account");
+        console.error("You don’t have an account");
       }
     } catch (error: any) {
       console.error(error);
     }
   };
+
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center p-8 sm:p-20">
       {/* Navbar */}
@@ -75,9 +92,7 @@ export default function AuthPage() {
           className={`text-lg font-medium px-4 ml-10 py-2 rounded-3xl transition-all duration-500 ${
             !isLogin ? "bg-white text-black" : "bg-gray-600 hover:bg-gray-500"
           }`}
-          onClick={() => {
-            setIsLogin(false);
-          }}
+          onClick={() => setIsLogin(false)}
         >
           Sign Up
         </button>
@@ -103,6 +118,14 @@ export default function AuthPage() {
         ) : (
           <div className="p-6 text-center">
             <h2 className="text-2xl font-semibold">Sign Up</h2>
+            <select
+              className="w-full p-3 rounded bg-gray-700 text-white outline-none mt-4"
+              value={userType}
+              onChange={(e) => setUserType(e.target.value)}
+            >
+              <option value="LENDER">Lender</option>
+              <option value="BORROWER">Borrower</option>
+            </select>
             <button
               onClick={handleSignup}
               className="w-full flex items-center justify-center bg-white text-black px-6 py-3 text-lg font-medium rounded-lg hover:bg-gray-300 transition mt-4"

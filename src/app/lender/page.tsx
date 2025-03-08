@@ -23,9 +23,11 @@ export default function HomePage() {
             Take advantage of the power of blockchain to grow your AVAX holdings
             passively and securely.
           </p>
-          <button className="bg-white text-black px-6 py-3 text-lg font-medium rounded-lg hover:bg-gray-300 transition">
-            Start Lending
-          </button>
+          <a href="/lender/actions">
+            <button className="bg-white text-black px-6 py-3 text-lg font-medium rounded-lg hover:bg-gray-300 transition">
+              Start Lending
+            </button>
+          </a>
         </div>
         <div className="ml-40">
           <img
