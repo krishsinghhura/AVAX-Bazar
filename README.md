@@ -43,9 +43,9 @@ NEXT_PUBLIC_CONTRACT_ADDRESS=your_contract_address
 
 ## Images
 
-(./home.jpg)
-(./lender.jpg)
-(./borrower.jpg)
+![Home page](./home.jpg)
+![Lending Page](./lender.jpg)
+![Borrowing Page](./borrower.jpg)
 
 ## Setup Instructions
 
