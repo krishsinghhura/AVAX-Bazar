@@ -1,7 +1,43 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "C:\\Users\\krish\\Desktop\\Classroom\\paisa-bazar\\hardhat\\contracts\\Token.sol": {
+    "C:\\Users\\krish\\Desktop\\Classroom\\AVAX-Bazar\\hardhat\\contracts\\Avax.sol": {
+      "lastModificationDate": 1741503952002,
+      "contentHash": "7350d275d8c9ad3d44027cb8dc9c134c",
+      "sourceName": "contracts/Avax.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20",
+        "LoanPool"
+      ]
+    },
+    "C:\\Users\\krish\\Desktop\\Classroom\\AVAX-Bazar\\hardhat\\contracts\\Token.sol": {
       "lastModificationDate": 1741424828543,
       "contentHash": "21da79e7222a259be75d703fd937a1fb",
       "sourceName": "contracts/Token.sol",

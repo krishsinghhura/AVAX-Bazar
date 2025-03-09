@@ -1,0 +1,52 @@
+[
+  {
+    "token_name": "USD Coin",
+    "symbol": "USDC",
+    "contract_address": "0x5425890298aed601595a70AB815c96711a31Bc65"
+  },
+  {
+    "token_name": "Wrapped AVAX",
+    "symbol": "WAVAX",
+    "contract_address": "0x1d308089a2d1ced3f1ce36b1fcaf815b07217be3"
+  },
+  {
+    "token_name": "Chainlink Token",
+    "symbol": "LINK",
+    "contract_address": "0x3580c7A817cCD41f7e02143BFa411D4EeAE78093"
+  },
+  {
+    "token_name": "EUR Coin",
+    "symbol": "EURC",
+    "contract_address": "0x5e44db7996c682e92a960b65ac713a54ad815c6b"
+  },
+  {
+    "token_name": "Tether USD",
+    "symbol": "USDT",
+    "contract_address": "0x29633Cf4FF2D98347895C7327f83Ab4cd592C808"
+  },
+  {
+    "token_name": "Wrapped Ether",
+    "symbol": "WETH.e",
+    "contract_address": "0xe45a7eb34ec05131f8f4ba04ca6d57a8fc83545c"
+  },
+  {
+    "token_name": "Mock DAI",
+    "symbol": "DAI",
+    "contract_address": "0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E"
+  },
+  {
+    "token_name": "Mock Binance USD",
+    "symbol": "BUSD",
+    "contract_address": "0x4fabb145d64652a948d72533023f6e7a623c7c53"
+  },
+  {
+    "token_name": "Beam Mock Token",
+    "symbol": "MC",
+    "contract_address": "0x955723e26bd1b2165391BCaf39A92f77b30FFe01"
+  },
+  {
+    "token_name": "Wrapped Beam Mock",
+    "symbol": "WMC",
+    "contract_address": "0xF65B6f9c94187276C7d91F4F74134751d248bFeA"
+  }
+]
