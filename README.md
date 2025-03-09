@@ -41,9 +41,11 @@ NEXT_PUBLIC_LOGIN_CONTRACT_ADDRESS=your_login_contract_address
 NEXT_PUBLIC_CONTRACT_ADDRESS=your_contract_address
 ```
 
-## Video Demonstration
+## Images
 
-[![Watch the Video](video_thumbnail.png)](video_link_here)
+(./home.jpg)
+(./lender.jpg)
+(./borrower.jpg)
 
 ## Setup Instructions
 

@@ -41,10 +41,12 @@ export default function AuthPage() {
       return;
     }
     try {
-      const tx = await auth.signup(userType);
+      const tx = await auth.signup();
       await tx.wait();
+      const addres = auth.getAddress();
+
       await axios.post("/api/users", {
-        address: auth.address,
+        address: addres,
         role: userType,
       });
       Cookies.set("token", auth.toString());
