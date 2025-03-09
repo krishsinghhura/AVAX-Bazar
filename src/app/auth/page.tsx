@@ -10,6 +10,7 @@ export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
   const [contract, setContract] = useState<ethers.Contract | null>(null);
   const [userType, setUserType] = useState("lender");
+  const [loading, setLoading] = useState(false);
   const ContractAddress = process.env.NEXT_PUBLIC_LOGIN_CONTRACT_ADDRESS ?? "";
   const ContractAbi = ABI.abi;
   const Router = useRouter();
@@ -32,15 +33,17 @@ export default function AuthPage() {
   };
 
   const handleSignup = async () => {
+    setLoading(true);
     const { auth } = (await connectWallet()) ?? {};
     if (!auth) {
       console.error("Contract is not connected");
+      setLoading(false);
       return;
     }
     try {
       const tx = await auth.signup(userType);
       await tx.wait();
-      const newUser = await axios.post("/api/users", {
+      await axios.post("/api/users", {
         address: auth.address,
         role: userType,
       });
@@ -48,12 +51,15 @@ export default function AuthPage() {
     } catch (error: any) {
       console.error("Signup error:", error);
     }
+    setLoading(false);
   };
 
   const handleLogin = async () => {
+    setLoading(true);
     const wallet = await connectWallet();
     if (!wallet || !wallet.auth) {
       console.error("Contract is not connected");
+      setLoading(false);
       return;
     }
     try {
@@ -74,6 +80,7 @@ export default function AuthPage() {
     } catch (error: any) {
       console.error(error);
     }
+    setLoading(false);
   };
 
   return (
@@ -106,13 +113,9 @@ export default function AuthPage() {
             <button
               onClick={handleLogin}
               className="w-full flex items-center justify-center bg-white text-black px-6 py-3 text-lg font-medium rounded-lg hover:bg-gray-300 transition mt-4"
+              disabled={loading}
             >
-              <img
-                src="https://imgs.search.brave.com/CqYi1p9h3_jS3mMC_dKXliPWZVxKOODjFS4uwiI1550/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y3J5cHRvLW5hdGlv/bi5pby9jbi1maWxl/cy91cGxvYWRzLzIw/MjAvMTAvbWV0YW1h/c2stbG9nby0zMDB4/MjI1LnBuZw"
-                alt="Metamask"
-                className="w-6 h-6 mr-2"
-              />
-              Login with MetaMask
+              {loading ? "Logging in..." : "Login with MetaMask"}
             </button>
           </div>
         ) : (
@@ -122,6 +125,7 @@ export default function AuthPage() {
               className="w-full p-3 rounded bg-gray-700 text-white outline-none mt-4"
               value={userType}
               onChange={(e) => setUserType(e.target.value)}
+              disabled={loading}
             >
               <option value="LENDER">Lender</option>
               <option value="BORROWER">Borrower</option>
@@ -129,13 +133,9 @@ export default function AuthPage() {
             <button
               onClick={handleSignup}
               className="w-full flex items-center justify-center bg-white text-black px-6 py-3 text-lg font-medium rounded-lg hover:bg-gray-300 transition mt-4"
+              disabled={loading}
             >
-              <img
-                src="https://imgs.search.brave.com/CqYi1p9h3_jS3mMC_dKXliPWZVxKOODjFS4uwiI1550/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y3J5cHRvLW5hdGlv/bi5pby9jbi1maWxl/cy91cGxvYWRzLzIw/MjAvMTAvbWV0YW1h/c2stbG9nby0zMDB4/MjI1LnBuZw"
-                alt="Metamask"
-                className="w-6 h-6 mr-2"
-              />
-              Sign Up with MetaMask
+              {loading ? "Signing up..." : "Sign Up with MetaMask"}
             </button>
           </div>
         )}

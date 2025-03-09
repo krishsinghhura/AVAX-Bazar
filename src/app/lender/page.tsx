@@ -1,4 +1,16 @@
+"use client";
+import { useState } from "react";
+
 export default function HomePage() {
+  const [loading, setLoading] = useState(false);
+
+  const handleLending = () => {
+    setLoading(true);
+    setTimeout(() => {
+      window.location.href = "/lender/actions";
+    }, 2000); // Simulating loading time
+  };
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-black text-white">
       {/* Header */}
@@ -23,11 +35,13 @@ export default function HomePage() {
             Take advantage of the power of blockchain to grow your AVAX holdings
             passively and securely.
           </p>
-          <a href="/lender/actions">
-            <button className="bg-white text-black px-6 py-3 text-lg font-medium rounded-lg hover:bg-gray-300 transition">
-              Start Lending
-            </button>
-          </a>
+          <button
+            onClick={handleLending}
+            className="bg-white text-black px-6 py-3 text-lg font-medium rounded-lg hover:bg-gray-300 transition"
+            disabled={loading}
+          >
+            {loading ? "Loading..." : "Start Lending"}
+          </button>
         </div>
         <div className="ml-40">
           <img
