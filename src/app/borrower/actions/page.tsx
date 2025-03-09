@@ -82,10 +82,6 @@ export default function BorrowActions() {
       console.error("error making contract");
       return;
     }
-    const loans = await contract.loans(
-      "0x1a6A42032a78538c69f1FCf7c617cEAFc4433933"
-    );
-    console.log(loans);
 
     if (!selectedToken) {
       alert("Please select a token!");
