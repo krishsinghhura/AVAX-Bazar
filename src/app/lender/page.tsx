@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function HomePage() {
   const [loading, setLoading] = useState(false);
@@ -44,7 +45,7 @@ export default function HomePage() {
           </button>
         </div>
         <div className="ml-40">
-          <img
+          <Image
             src="https://subnets.avax.network/icon-192.png"
             alt="Lending Illustration"
             className="  rounded-lg shadow-lg grayscale"

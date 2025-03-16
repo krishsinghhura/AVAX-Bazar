@@ -32,11 +32,9 @@ interface TransactionsData {
 export default function TransactionsPage() {
   const [depositAmount, setDepositAmount] = useState("");
   const [signer, setSigner] = useState<ethers.JsonRpcSigner | null>(null);
-  const [account, setAccount] = useState("");
   const [transactionsData, setTransactionsData] = useState<TransactionsData>({
     transactions: [],
   });
-  const [balance, setBalance] = useState("0");
 
   const conAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ?? "";
 
@@ -55,7 +53,6 @@ export default function TransactionsPage() {
       const signer = await provider.getSigner();
       setSigner(signer);
       const address = await signer.getAddress();
-      setAccount(address);
     } catch (error) {
       console.error(error);
     }
@@ -78,7 +75,6 @@ export default function TransactionsPage() {
             parseFloat(tx.internalTransactions[0].value) / 1e18;
         }
       });
-      setBalance((totalDeposits - totalWithdrawals).toFixed(4));
     } catch (error) {
       console.error("Failed to fetch transactions:", error);
     }

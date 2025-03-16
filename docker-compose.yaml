@@ -1,0 +1,33 @@
+version: '3.8'
+name: AVAX-BAXAR
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  avax-bazar:
+    build: .
+    environment:
+      - DATABASE_URL=""
+      - NEXT_PUBLIC_JWT_SECRET=""
+      - NEXT_PUBLIC_LOGIN_CONTRACT_ADDRESS=""
+      - NEXT_PUBLIC_CONTRACT_ADDRESS=""
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+      - app/node_modules
+    command: ["npm","run","dev"]
+    
+volumes:
+  postgres_data:

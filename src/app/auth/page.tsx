@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
-  const [contract, setContract] = useState<ethers.Contract | null>(null);
   const [userType, setUserType] = useState("lender");
   const [loading, setLoading] = useState(false);
   const ContractAddress = process.env.NEXT_PUBLIC_LOGIN_CONTRACT_ADDRESS ?? "";
@@ -25,7 +24,6 @@ export default function AuthPage() {
       const signer = await provider.getSigner();
       const address = await signer.getAddress();
       const auth = new ethers.Contract(ContractAddress, ContractAbi, signer);
-      setContract(auth);
       return { auth, address };
     } catch (error: any) {
       console.error(error);

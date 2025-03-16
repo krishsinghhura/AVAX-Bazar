@@ -3,11 +3,6 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-interface User {
-  address: string;
-  role: string;
-}
-
 export async function POST(req: NextRequest) {
   const reqBody = await req.json();
   const { address, role } = reqBody;

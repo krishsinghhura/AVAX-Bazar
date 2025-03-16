@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function BorrowerPage() {
   const [loading, setLoading] = useState(false);
@@ -42,7 +43,7 @@ export default function BorrowerPage() {
           </button>
         </div>
         <div className="ml-40">
-          <img
+          <Image
             src="https://subnets.avax.network/icon-192.png"
             alt="Borrowing Illustration"
             className="rounded-lg shadow-lg grayscale"

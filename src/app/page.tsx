@@ -1,14 +1,7 @@
 "use client";
-import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function HomePage() {
-  const router = useRouter();
-  // const token = Cookies.get("token");
-  // if (!token) {
-  //   router.push("/auth");
-  // }
-
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-black text-white">
       {/* Header */}
@@ -47,7 +40,7 @@ export default function HomePage() {
 
         {/* Right Side - GIF */}
         <div className="flex justify-center">
-          <img
+          <Image
             src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHB5M29ka2R4eGloNnRkdm93dTc1NDdjaHhvdG0yc2V4NHo1cnB0eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Ti6ooRJ8pqe4ZGZV70/giphy.gif"
             alt="Lending and Borrowing Process"
             className="w-full max-w-md rounded-lg shadow-lg"
